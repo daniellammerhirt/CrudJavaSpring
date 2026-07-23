@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewsport" content="widht=device-width, initial-scale = 1, shrink-to-fit = no">
+
+    <link rel="stylesheet" href="https://cdn.jsdeliv.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <title>Cardápio</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Cardápio</h3>
+        <img th:src="@{/imagens/info.png}" width="100px">
+        <hr>
+        <a th:href="@{/cardapio/novo}"
+           class="btn btn-primary" title="Novo Prato">
+            <i class="bi bi-file-eamark"></i>
+        </a>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>Prato</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cardapio : ${listacardapio}">
+                <td th:text="${cardapio.prato}"/>
+                <td th:text="${cardapio.descricao}"/>
+                <td th:text="${cardapio.preco}"/>
+                <td>
+                    <a th:href="@{cardapio/edita(id=${cardapio.id})}" class="btn btn-primary" title="Edita prato"><i class="bi bi-pencil"></i> </a>
+                    <a th:href="@{cardapio/exclui(id=${cardapio.id})}" class="btn btn-danger" title="Exclui prato" onclick="if (!(confirm('Tem certeza que deseja excluir'))) return false">
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
